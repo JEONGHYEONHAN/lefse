@@ -434,13 +434,7 @@ def format_input():
 
     cls['subclass'] = rename_same_subcl(cls['class'],cls['subclass'])
 #   if 'subclass' in cls.keys(): cls = group_small_subclasses(cls,params['subcl_min_card'])
-
-    if ('subclass' in cls.keys()) and ('subject' in cls.keys()):
-        class_sl, subclass_sl, class_hierarchy = get_class_slices(list(zip(cls['class'], cls['subclass'], cls['subject'])))
-    elif ('subclass' in cls.keys()) and ('subject' not in cls.keys()):
-        class_sl, subclass_sl, class_hierarchy = get_class_slices(list(zip(cls['class'], cls['subclass'])))
-    elif ('subclass' not in cls.keys()) and ('subject' in cls.keys()):
-        class_sl, subclass_sl, class_hierarchy = get_class_slices(list(zip(cls['class'], cls['subject'])))
+    class_sl,subclass_sl,class_hierarchy = get_class_slices(list(zip(cls['class'], cls['subclass'], cls['subject'])))
 
     feats = dict([(d[0],d[1:]) for d in data])
 
@@ -462,9 +456,10 @@ def format_input():
             if 'subject' in cls: outf.write( "\t".join(list(["subject"])+list(cls['subject']))  + "\n" )
             for k,v in out['feats'].items(): outf.write( "\t".join([k]+[str(vv) for vv in v]) + "\n" )
 
+
     with open(params['output_file'], 'wb') as back_file:
         pickle.dump(out,back_file)
 
-
+    
 if  __name__ == '__main__':
     format_input()
