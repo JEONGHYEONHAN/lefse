@@ -234,7 +234,7 @@ def test_lda_r(cls,feats,cl_sl,boots,fract_sample,lda_th,tol_min,nlogs):
         m = max([numpy.mean([means[k][kk][p] for kk in range(boots)]) for p in range(len(pairs))])
         res[k] = math.copysign(1.0,m)*math.log(1.0+math.fabs(m),10)
 
-    return res,dict([(k,x) for k,x in res.items() if math.fabs(x) > lda_th])
+    return res,dict([(k,x) for k,x in res.items()])# if math.fabs(x) > lda_th])
 
 
 def test_svm(cls,feats,cl_sl,boots,fract_sample,lda_th,tol_min,nsvm):
