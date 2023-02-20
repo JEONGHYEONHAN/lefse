@@ -120,7 +120,7 @@ def lefse_run():
     df['pvalue'] = df['pvalue'].astype(float)
     
     df.loc[(df['lda']<2)|(df['pvalue']>0.05),['class','lda','pvalue']]=[np.nan,np.nan,'-']
-    print(df)
+    #print(df)
     df.to_csv(params["output_file"]+"_filtered.res",sep='\t', index = None, header = None)
     
     
